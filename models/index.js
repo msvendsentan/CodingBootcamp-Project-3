@@ -1,8 +1,8 @@
 module.exports = {
-    Restaurants: require("./restaurants"),
-    Auth: require("./auth"),
-    Menu: require("./menu"),
-    Tables: require("./tables")
+    Restaurant: require("./Restaurant"),
+    //Auth: require("./auth"),
+    Menu: require("./Menu"),
+    Table: require("./Table")
 }
 
 // This is just a starter, definitely not finished scaffolding. It'll be tricky because we need collections within collections
