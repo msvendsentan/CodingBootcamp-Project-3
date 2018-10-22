@@ -2,8 +2,8 @@ const db = require("../models");
 
 module.exports = {
     getAll: function(req, res) {  
-        db.Restaurant.find({}).then(function(restaurant) {
-            res.json(restaurant);
+        db.Restaurant.find({}).then(function(restaurants) {
+            res.json(restaurants);
         }).catch(function(err) {
             res.json(err);
         });     

@@ -11,20 +11,19 @@ const style = {
     }
 }
 
-const RestaurantGet = props => (
-    <Container title="Restaurants">
+const MenuGet = props => (
+    <Container title="Restaurant Menu">
         <ul className="collapsible">
-            {props.list.map( restaurant => 
-                <li key={restaurant._id}>
+            {props.menu.map( menuitem => 
+                <li key={menuitem._id}>
                     <div className="collapsible-header teal lighten-3" style={style.header}>
-                        <div>{restaurant.name}</div>
+                        <div>{menuitem.type}: {menuitem.item} - ${menuitem.price}</div>
                         <div className="right" style={style.aside}>
-                            <a href="#" data-id={restaurant._id} onClick={props.select}><i className="material-icons" data-id={restaurant._id}>check_circle</i></a>
-                            <a href="#" data-id={restaurant._id} onClick={props.delete}><i className="material-icons" data-id={restaurant._id}>delete</i></a>
+                            <a href="#" data-id={menuitem._id} onClick={props.delete}><i className="material-icons" data-id={menuitem._id}>delete</i></a>
                         </div>
                     </div>
                     <div className="collapsible-body">
-                        <span>{restaurant.description}</span>
+                        <span>{menuitem.description}</span>
                     </div>
                 </li>
             )}
@@ -32,4 +31,4 @@ const RestaurantGet = props => (
     </Container>
 );
 
-export default RestaurantGet;
+export default MenuGet;

@@ -1,13 +1,13 @@
 import React from "react";
 import Container from "./basiccomps/Container";
 
-const RestaurantAdd = props => (
-    <Container title="Add Restaurant">
+const MenuAdd = props => (
+    <Container title="Add Menu Item">
         <form>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="name" type="text" name="name" onChange={props.handleInputChange}></input>
-                    <label htmlFor="name">Name</label>
+                    <input id="item" type="text" name="item" onChange={props.handleInputChange}></input>
+                    <label htmlFor="item">Menu Item</label>
                 </div>
             </div>
             <div className="row">
@@ -18,8 +18,14 @@ const RestaurantAdd = props => (
             </div>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="address" type="text" name="address" onChange={props.handleInputChange}></input>
-                    <label htmlFor="address">Address</label>
+                    <input id="type" type="text" name="type" onChange={props.handleInputChange}></input>
+                    <label htmlFor="type">Type (Appetizer, Main, Specials, etc.)</label>
+                </div>
+            </div>
+            <div className="row">
+                <div className="input-field col s12">
+                    <input id="price" type="number" name="price" onChange={props.handleInputChange}></input>
+                    <label htmlFor="price">Price</label>
                 </div>
             </div>
             <div className="row">
@@ -30,10 +36,11 @@ const RestaurantAdd = props => (
             </div>
             <button 
                 className={
-                    props.restaurant.name && 
-                    props.restaurant.description && 
-                    props.restaurant.address && 
-                    props.restaurant.imageSrc ? 
+                    props.menu.item && 
+                    props.menu.description && 
+                    props.menu.type && 
+                    props.menu.price &&
+                    props.menu.imageSrc ? 
                     "btn waves-effect waves-light" : 
                     "btn waves-effect waves-light disabled"
                 } 
@@ -46,4 +53,4 @@ const RestaurantAdd = props => (
     </Container>
 );
 
-export default RestaurantAdd;
+export default MenuAdd;
