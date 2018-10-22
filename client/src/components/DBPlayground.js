@@ -38,6 +38,16 @@ class DBPlayground extends Component {
             },
             list: [],
             selected: {}
+        },
+        request: {
+            add: {
+                request: ""
+            },
+            list: []
+        },
+        guest: {
+            order: [],
+            bill: 0
         }
     };
 
@@ -81,7 +91,6 @@ class DBPlayground extends Component {
             .catch(err => console.log(err));
     };
 
-    //menu: populate(rid), add(item), delete(id)
     loadMenu = (rid) => {
         API.admin.menu.populate({ rid: rid })
             .then(res => {

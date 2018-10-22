@@ -17,10 +17,8 @@ const restaurantSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Table"
         }
-    ],
+    ]
 });
-
-// + orders (restaurants -> tables -> orders) + requests (restaurants -> tables -> requests) 
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
