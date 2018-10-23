@@ -8,6 +8,9 @@ import TableAdd from "./playgroundcomps/TableAdd"
 import TableGet from "./playgroundcomps/TableGet"
 import GuestSit from "./playgroundcomps/GuestSit"
 import GuestOrder from "./playgroundcomps/GuestOrder"
+//import GuestQuery from "./playgroundcomps/GuestQuery"
+//import GuestPay from "./playgroundcomps/GuestPay"
+//import ServerStatus from "./playgroundcomps/GuestStatus"
 import API from "../utils/API";
 
 class DBPlayground extends Component {
@@ -293,6 +296,11 @@ class DBPlayground extends Component {
                 <GuestOrder
                     guest={this.state.guest.info}
                 />
+                /*
+                <GuestQuery />
+                <GuestPay />
+                <ServerStatus />
+                */
                 <button onClick={this.tester}>Console.log state</button>
             </div>
         );
