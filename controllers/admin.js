@@ -32,9 +32,9 @@ module.exports = {
                 { new: true }
             );
         }).then(function(restaurant) {
-                res.json(restaurant);
+            res.json(restaurant);
         }).catch(function(err) {
-            res.json(err);
+            console.log(err);
         });
     },
     getTables: function(req, res) {
@@ -71,7 +71,7 @@ module.exports = {
         }).then(function(restaurant) {
             res.json(restaurant);
         }).catch(function(err) {
-            res.json(err);
+            console.log(err);
         });
     },
     refreshTablePsws: function(req, res) {

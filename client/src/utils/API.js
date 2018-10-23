@@ -53,6 +53,14 @@ export default {
         stand: function(guest) {
             return axios.post
         }
+    },
+    queries: {
+        create: function(query) {
+            return axios.post("/queries", query);
+        },
+        getAllByRestaurant: function(rid) {
+            return axios.post("/queries/restaurant", rid);
+        }
     }
 
 };

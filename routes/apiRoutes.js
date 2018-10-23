@@ -29,4 +29,11 @@ router.route("/tables/refresh")
 router.route("/guest")
     .post(controllers.guest.create)
 
+router.route("/queries")
+    .post(controllers.query.create)
+    .delete(controllers.query.delete)
+
+router.route("/queries/restaurant")
+    .post(controllers.query.getAllByRestaurant)
+
 module.exports = router;

@@ -1,6 +1,7 @@
 module.exports = {
     Restaurant: require("./Restaurant"),
     Guest: require("./Guest"),
+    Query: require("./Query"),
     //Auth: require("./auth"),
     Menu: require("./Menu"),
     Table: require("./Table")

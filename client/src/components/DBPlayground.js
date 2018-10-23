@@ -8,9 +8,9 @@ import TableAdd from "./playgroundcomps/TableAdd"
 import TableGet from "./playgroundcomps/TableGet"
 import GuestSit from "./playgroundcomps/GuestSit"
 import GuestOrder from "./playgroundcomps/GuestOrder"
-//import GuestQuery from "./playgroundcomps/GuestQuery"
+import GuestQuery from "./playgroundcomps/GuestQuery"
 //import GuestPay from "./playgroundcomps/GuestPay"
-//import ServerStatus from "./playgroundcomps/GuestStatus"
+import ServerStatus from "./playgroundcomps/ServerStatus"
 import API from "../utils/API";
 
 class DBPlayground extends Component {
@@ -56,9 +56,9 @@ class DBPlayground extends Component {
             order: [],
             bill: 0
         },
-        request: {
+        queries: {
             add: {
-                request: ""
+                query: ""
             },
             list: []
         }        
@@ -93,6 +93,7 @@ class DBPlayground extends Component {
                 }), () => {
                     this.loadMenu(res.data._id)
                     this.loadTables(res.data._id)
+                    this.loadQueries(res.data._id)
                 });
             }).catch(err => console.log(err));
     };
@@ -130,6 +131,32 @@ class DBPlayground extends Component {
             .catch(err => console.log(err));
     };
 
+    loadQueries = (rid) => {
+        API.queries.getAllByRestaurant({ rid: rid })
+            .then(res => {
+                let allQueries = [];
+                res.data.tables.forEach(table => {
+                    table.guests.forEach(guest => {
+                        guest.queries.forEach(query => {
+                            allQueries.push({
+                                table: table.number,
+                                guest: guest.name,                               
+                                query: query
+                            });
+                        });
+                    });
+                });
+                this.setState(prevState => ({
+                    queries: {
+                        ...prevState.queries,
+                        list: allQueries                        
+                    }
+                }));
+
+            })
+            .catch(err => console.log(err));
+    };
+
     menuItemDelete = event => {
         event.preventDefault();
         API.menu.delete({
@@ -146,6 +173,11 @@ class DBPlayground extends Component {
             rid: this.state.restaurant.selected._id })
             .then(res => this.loadTables(this.state.restaurant.selected._id))
             .catch(err => console.log(err))
+    };
+
+    queryDelete = event => {
+        event.preventDefault();
+        console.log(event.target.getAttribute("data-id"));
     };
 
     handleCreateRestaurant = event => {
@@ -247,6 +279,30 @@ class DBPlayground extends Component {
         }));
     };
 
+    handleGuestQuery = event => {
+        event.preventDefault();
+        API.queries.create({
+            gid: this.state.guest.info.id,
+            query: {
+                query: this.state.queries.add.query
+            }
+        }).then(res => this.loadQueries(this.state.restaurant.selected)).catch(err => console.log(err));
+    };
+
+    handleGuestQueryInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            queries: {
+                ...prevState.queries,
+                add: {
+                    ...prevState.queries.add,
+                    [name]: value
+                }
+            }
+        }));
+    };
+
+
     tester = event => {
         event.preventDefault();
         console.log(this.state);
@@ -296,11 +352,18 @@ class DBPlayground extends Component {
                 <GuestOrder
                     guest={this.state.guest.info}
                 />
-                /*
-                <GuestQuery />
+                <GuestQuery
+                    queries={this.state.queries.add}
+                    handleFormSubmit={this.handleGuestQuery}
+                    handleInputChange={this.handleGuestQueryInput}
+                />
+                <ServerStatus
+                    queries={this.state.queries.list}
+                    delete={this.queryDelete}
+                />
+                {/*
                 <GuestPay />
-                <ServerStatus />
-                */
+                */}
                 <button onClick={this.tester}>Console.log state</button>
             </div>
         );
