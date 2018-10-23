@@ -6,6 +6,8 @@ import MenuAdd from "./playgroundcomps/MenuAdd"
 import MenuGet from "./playgroundcomps/MenuGet"
 import TableAdd from "./playgroundcomps/TableAdd"
 import TableGet from "./playgroundcomps/TableGet"
+import GuestSit from "./playgroundcomps/GuestSit"
+import GuestOrder from "./playgroundcomps/GuestOrder"
 import API from "../utils/API";
 
 class DBPlayground extends Component {
@@ -39,16 +41,24 @@ class DBPlayground extends Component {
             list: [],
             selected: {}
         },
+        guest: {
+            add: {
+                name: "",
+                table: ""
+            },
+            info: {
+                id: "",
+                name: ""
+            },
+            order: [],
+            bill: 0
+        },
         request: {
             add: {
                 request: ""
             },
             list: []
-        },
-        guest: {
-            order: [],
-            bill: 0
-        }
+        }        
     };
 
     componentDidMount() {
@@ -92,7 +102,7 @@ class DBPlayground extends Component {
     };
 
     loadMenu = (rid) => {
-        API.admin.menu.populate({ rid: rid })
+        API.menu.populate({ rid: rid })
             .then(res => {
                 this.setState(prevState => ({
                     menu: {
@@ -105,7 +115,7 @@ class DBPlayground extends Component {
     };
 
     loadTables = (rid) => {
-        API.admin.tables.populate({ rid: rid })
+        API.tables.populate({ rid: rid })
             .then(res => {
                 this.setState(prevState => ({
                     tables: {
@@ -114,11 +124,12 @@ class DBPlayground extends Component {
                     }
                 }))
             })
+            .catch(err => console.log(err));
     };
 
     menuItemDelete = event => {
         event.preventDefault();
-        API.admin.menu.delete({
+        API.menu.delete({
             id: event.target.getAttribute("data-id"),
             rid: this.state.restaurant.selected._id })
             .then(res => this.loadMenu(this.state.restaurant.selected._id))
@@ -127,7 +138,7 @@ class DBPlayground extends Component {
 
     tableDelete = event => {
         event.preventDefault();
-        API.admin.tables.delete({
+        API.tables.delete({
             id: event.target.getAttribute("data-id"),
             rid: this.state.restaurant.selected._id })
             .then(res => this.loadTables(this.state.restaurant.selected._id))
@@ -156,7 +167,7 @@ class DBPlayground extends Component {
 
     handleCreateMenu = event => {
         event.preventDefault();
-        API.admin.menu.add({
+        API.menu.add({
             rid: this.state.restaurant.selected._id,
             item: this.state.menu.add
         }).then(res => this.loadMenu(this.state.restaurant.selected._id)).catch(err => console.log(err));
@@ -177,7 +188,7 @@ class DBPlayground extends Component {
 
     handleCreateTable = event => {
         event.preventDefault();
-        API.admin.tables.add({
+        API.tables.add({
             rid: this.state.restaurant.selected._id,
             table: this.state.tables.add
         }).then(res => this.loadTables(this.state.restaurant.selected._id)).catch(err => console.log(err));
@@ -190,6 +201,43 @@ class DBPlayground extends Component {
                 ...prevState.tables,
                 add: {
                     ...prevState.tables.add,
+                    [name]: value
+                }
+            }
+        }));
+    };
+
+    handleGuestSit = event => {
+        event.preventDefault();
+        let tid = this.state.tables.list.filter(table => {
+            return table.number === this.state.guest.add.table
+        });
+        API.guest.sit({
+            tid: tid[0]._id,
+            name: {
+                name: this.state.guest.add.name
+            }
+        }).then(res => {
+            this.setState(prevState => ({
+                guest: {
+                    ...prevState.guest,
+                    info: {
+                        ...prevState.guest.info,
+                        id: res.data._id,
+                        name: res.data.name
+                    }
+                }
+            }))
+        }).catch(err => console.log(err));
+    };
+
+    handleGuestSitInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            guest: {
+                ...prevState.guest,
+                add: {
+                    ...prevState.guest.add,
                     [name]: value
                 }
             }
@@ -236,7 +284,16 @@ class DBPlayground extends Component {
                     tables={this.state.tables.list}
                     delete={this.tableDelete}
                 />
-                <button onClick={this.tester}>Test button</button>
+                <GuestSit
+                    guest={this.state.guest.add}
+                    tables={this.state.tables.list}
+                    handleFormSubmit={this.handleGuestSit}
+                    handleInputChange={this.handleGuestSitInput}
+                />
+                <GuestOrder
+                    guest={this.state.guest.info}
+                />
+                <button onClick={this.tester}>Console.log state</button>
             </div>
         );
     }

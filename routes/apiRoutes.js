@@ -26,4 +26,7 @@ router.route("/tables/add")
 router.route("/tables/refresh")
     .get(controllers.admin.refreshTablePsws)
 
+router.route("/guest")
+    .post(controllers.guest.create)
+
 module.exports = router;
