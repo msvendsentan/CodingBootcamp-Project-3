@@ -19,7 +19,7 @@ const ServerStatus = props => (
                     <div className="collapsible-header teal lighten-3" style={style.header}>
                         <div>{query.table} - {query.guest}</div>
                         <div className="right" style={style.aside}>
-                            <a href="#" data-id={query.query._id} onClick={props.delete}><i className="material-icons" data-id={query.query._id}>check</i></a>
+                            <a href="#" data-id={query.query._id} data-gid={query.gid} onClick={props.delete}><i className="material-icons" data-id={query.query._id} data-gid={query.gid}>check</i></a>
                         </div>
                     </div>
                     <div className="collapsible-body">

@@ -47,11 +47,11 @@ export default {
         },
         //"Pay" is to be shown after the bill has been tallied. The "pay" button will simply delete the order
         pay: function(guest) {
-            return axios.post
+            return console.log("");
         },
         //Triggers after paying or asking server for bill--deletes guest
         stand: function(guest) {
-            return axios.post
+            return axios.delete("/guest", { data: guest });
         }
     },
     queries: {
@@ -60,6 +60,9 @@ export default {
         },
         getAllByRestaurant: function(rid) {
             return axios.post("/queries/restaurant", rid);
+        },
+        delete: function(ids) {
+            return axios.delete("/queries", { data: ids });
         }
     }
 

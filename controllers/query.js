@@ -37,7 +37,6 @@ module.exports = {
             });
     },
     getAllByRestaurant: function(req, res) {
-        console.log("Test, does this work?", req.body);
         db.Restaurant.findOne({ _id: req.body.rid })
             .populate({
                 path: "tables",

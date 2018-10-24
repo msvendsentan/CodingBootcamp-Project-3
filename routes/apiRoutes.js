@@ -10,24 +10,25 @@ router.route("/restaurants/:id")
     .delete(controllers.restaurant.delete)
 
 router.route("/menu")
-    .post(controllers.admin.getMenu)
-    .delete(controllers.admin.deleteMenuItem)
+    .post(controllers.menu.getMenu)
+    .delete(controllers.menu.deleteMenuItem)
 
 router.route("/menu/add")
-    .post(controllers.admin.addMenuItem)
+    .post(controllers.menu.addMenuItem)
 
 router.route("/tables")
-    .post(controllers.admin.getTables)
-    .delete(controllers.admin.deleteTable)
+    .post(controllers.table.getTables)
+    .delete(controllers.table.deleteTable)
 
 router.route("/tables/add")
-    .post(controllers.admin.addTable)
+    .post(controllers.table.addTable)
 
 router.route("/tables/refresh")
-    .get(controllers.admin.refreshTablePsws)
+    .get(controllers.table.refreshTablePsws)
 
 router.route("/guest")
     .post(controllers.guest.create)
+    .delete(controllers.guest.delete)
 
 router.route("/queries")
     .post(controllers.query.create)

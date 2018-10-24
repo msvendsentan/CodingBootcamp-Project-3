@@ -9,7 +9,7 @@ import TableGet from "./playgroundcomps/TableGet"
 import GuestSit from "./playgroundcomps/GuestSit"
 import GuestOrder from "./playgroundcomps/GuestOrder"
 import GuestQuery from "./playgroundcomps/GuestQuery"
-//import GuestPay from "./playgroundcomps/GuestPay"
+import GuestPay from "./playgroundcomps/GuestPay"
 import ServerStatus from "./playgroundcomps/ServerStatus"
 import API from "../utils/API";
 
@@ -41,8 +41,7 @@ class DBPlayground extends Component {
                 number: "",
                 capacity: 0
             },
-            list: [],
-            selected: {}
+            list: []
         },
         guest: {
             add: {
@@ -51,7 +50,8 @@ class DBPlayground extends Component {
             },
             info: {
                 id: "",
-                name: ""
+                name: "",
+                tid: ""
             },
             order: [],
             bill: 0
@@ -140,7 +140,8 @@ class DBPlayground extends Component {
                         guest.queries.forEach(query => {
                             allQueries.push({
                                 table: table.number,
-                                guest: guest.name,                               
+                                guest: guest.name,
+                                gid: guest._id,                             
                                 query: query
                             });
                         });
@@ -172,12 +173,16 @@ class DBPlayground extends Component {
             id: event.target.getAttribute("data-id"),
             rid: this.state.restaurant.selected._id })
             .then(res => this.loadTables(this.state.restaurant.selected._id))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     };
 
     queryDelete = event => {
         event.preventDefault();
-        console.log(event.target.getAttribute("data-id"));
+        API.queries.delete({
+            id: event.target.getAttribute("data-id"),
+            gid: event.target.getAttribute("data-gid")
+        }).then(res => this.loadQueries(this.state.restaurant.selected._id))
+        .catch(err => console.log(err));
     };
 
     handleCreateRestaurant = event => {
@@ -259,7 +264,8 @@ class DBPlayground extends Component {
                     info: {
                         ...prevState.guest.info,
                         id: res.data._id,
-                        name: res.data.name
+                        name: res.data.name,
+                        tid: tid[0]._id
                     }
                 }
             }))
@@ -302,6 +308,26 @@ class DBPlayground extends Component {
         }));
     };
 
+    handleGuestStand = event => {
+        event.preventDefault();        
+        API.guest.stand({
+            id: event.target.getAttribute("data-id"),
+            tid: this.state.guest.info.tid
+        }).then(res => {
+            this.setState(prevState => ({
+                guest: {
+                    ...prevState.guest,
+                    info: {
+                        id: "",
+                        name: "",
+                        tid: ""
+                    },
+                    order: [],
+                    bill: 0
+                }
+            }))
+        }).catch(err => console.log(err));
+    };
 
     tester = event => {
         event.preventDefault();
@@ -357,31 +383,18 @@ class DBPlayground extends Component {
                     handleFormSubmit={this.handleGuestQuery}
                     handleInputChange={this.handleGuestQueryInput}
                 />
+                <GuestPay
+                    guest={this.state.guest.info}
+                    handleFormSubmit={this.handleGuestStand}
+                />                
                 <ServerStatus
                     queries={this.state.queries.list}
                     delete={this.queryDelete}
                 />
-                {/*
-                <GuestPay />
-                */}
                 <button onClick={this.tester}>Console.log state</button>
             </div>
         );
     }
 }
-
-/*
-Render:
-MenuGet (see full menu, delete options) - WILL NEED SORT FUNCTIONALITY (array.filter -> array.map)
-
-GuestSitAtTable (incl. first query (allergies))
-GuestOrder
-GuestQuery (update when "addressed")
-GuestBill
-
-ServerGetQueries ("address" options)
-
-
-*/
 
 export default DBPlayground;
