@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Connect to our database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb:localhost/tobenamed";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/restaurantdb";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 

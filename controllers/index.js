@@ -1,7 +1,8 @@
 module.exports = {
-    admin: require("./admin"),
     auth: require("./auth"),
+    table: require("./table"),
+    menu: require("./menu"),
     guest: require("./guest"),
-    newRestaurant: require("./newRestaurant"),
-    server: require("./server")
+    query: require("./query"),
+    restaurant: require("./restaurant")
 }
