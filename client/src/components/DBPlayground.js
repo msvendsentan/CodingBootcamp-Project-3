@@ -11,6 +11,8 @@ import GuestOrder from "./playgroundcomps/GuestOrder"
 import GuestQuery from "./playgroundcomps/GuestQuery"
 import GuestPay from "./playgroundcomps/GuestPay"
 import ServerStatus from "./playgroundcomps/ServerStatus"
+import Signup from "./playgroundcomps/Signup"
+import Login from "./playgroundcomps/Login"
 import API from "../utils/API";
 
 class DBPlayground extends Component {
@@ -61,7 +63,20 @@ class DBPlayground extends Component {
                 query: ""
             },
             list: []
-        }        
+        },
+        signup: {
+            account: {
+                user: "",
+                password: "",
+                email: ""
+            }
+        },
+        login: {
+            account: {
+                user: "",
+                password: ""
+            }
+        }
     };
 
     componentDidMount() {
@@ -84,12 +99,12 @@ class DBPlayground extends Component {
     restaurantSelect = event => {
         event.preventDefault();
         API.restaurants.get(event.target.getAttribute("data-id"))
-            .then( res => {
+            .then(res => {
                 this.setState(prevState => ({
                     restaurant: {
                         ...prevState.restaurant,
                         selected: res.data
-                    }, 
+                    },
                 }), () => {
                     this.loadMenu(res.data._id)
                     this.loadTables(res.data._id)
@@ -141,7 +156,7 @@ class DBPlayground extends Component {
                             allQueries.push({
                                 table: table.number,
                                 guest: guest.name,
-                                gid: guest._id,                             
+                                gid: guest._id,
                                 query: query
                             });
                         });
@@ -150,7 +165,7 @@ class DBPlayground extends Component {
                 this.setState(prevState => ({
                     queries: {
                         ...prevState.queries,
-                        list: allQueries                        
+                        list: allQueries
                     }
                 }));
 
@@ -162,7 +177,8 @@ class DBPlayground extends Component {
         event.preventDefault();
         API.menu.delete({
             id: event.target.getAttribute("data-id"),
-            rid: this.state.restaurant.selected._id })
+            rid: this.state.restaurant.selected._id
+        })
             .then(res => this.loadMenu(this.state.restaurant.selected._id))
             .catch(err => console.log(err));
     };
@@ -171,7 +187,8 @@ class DBPlayground extends Component {
         event.preventDefault();
         API.tables.delete({
             id: event.target.getAttribute("data-id"),
-            rid: this.state.restaurant.selected._id })
+            rid: this.state.restaurant.selected._id
+        })
             .then(res => this.loadTables(this.state.restaurant.selected._id))
             .catch(err => console.log(err));
     };
@@ -182,7 +199,7 @@ class DBPlayground extends Component {
             id: event.target.getAttribute("data-id"),
             gid: event.target.getAttribute("data-gid")
         }).then(res => this.loadQueries(this.state.restaurant.selected._id))
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
     };
 
     handleCreateRestaurant = event => {
@@ -309,7 +326,7 @@ class DBPlayground extends Component {
     };
 
     handleGuestStand = event => {
-        event.preventDefault();        
+        event.preventDefault();
         API.guest.stand({
             id: event.target.getAttribute("data-id"),
             tid: this.state.guest.info.tid
@@ -329,6 +346,29 @@ class DBPlayground extends Component {
         }).catch(err => console.log(err));
     };
 
+    handleSignUpInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            signup: {
+                ...prevState.signup,
+                account: {
+                    ...prevState.signup.account,
+                    [name]: value
+                }
+            }
+        }));
+    }
+
+    handleSignUpSubmit = event => {
+        event.preventDefault();
+        API.authenticate.create(this.state.signup.account).then(res => {
+            this.setState({
+                success: res.data
+            })
+        }).catch(err => console.log(err));
+    };
+
+
     tester = event => {
         event.preventDefault();
         console.log(this.state);
@@ -343,7 +383,7 @@ class DBPlayground extends Component {
                     handleFormSubmit={this.handleCreateRestaurant}
                     handleInputChange={this.handleRestaurantInput}
                 />
-                <RestaurantGet 
+                <RestaurantGet
                     list={this.state.restaurant.list}
                     select={this.restaurantSelect}
                     delete={this.restaurantDelete}
@@ -386,15 +426,27 @@ class DBPlayground extends Component {
                 <GuestPay
                     guest={this.state.guest.info}
                     handleFormSubmit={this.handleGuestStand}
-                />                
+                />
                 <ServerStatus
                     queries={this.state.queries.list}
                     delete={this.queryDelete}
                 />
+                <Signup
+                    account={this.state.signup.account}
+                    success={this.state.success}
+                    handleFormSubmit={this.handleSignUpSubmit}
+                    handleInputChange={this.handleSignUpInput}
+                />
+                <Login
+                    account={this.state.login.account}
+                    success={this.state.success}
+                    handleFormSubmit={this.handleSignUpSubmit}
+                    handleInputChange={this.handleSignupInput}
+                />
                 <button onClick={this.tester}>Console.log state</button>
             </div>
-        );
+        )
     }
-}
+};
 
 export default DBPlayground;

@@ -64,6 +64,13 @@ export default {
         delete: function(ids) {
             return axios.delete("/queries", { data: ids });
         }
+    },
+    authenticate: {
+        create: function(signup) {
+            return axios.post("/signup", signup);
+        },
+        login: function(login) {
+            return axios.post("/login", login);
+        }
     }
-
 };

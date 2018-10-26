@@ -26,25 +26,34 @@ io.on("connection", function(socket) {
 
 */
 
-/* Passport/auth boilerplate
+// Passport/auth boilerplate
 
-app.use(require("express-session")({ secret: "placeholder", resave: false, saveUninitialized: false }));
+// app.use(require("express-session")({ secret: "placeholder", resave: false, saveUninitialized: false }));
 
-passport.use(new Strategy(
-    function(username, password, cb) {
-        auth.users.findByUsername(username, function(err, user) {
-            if (err) { return cb(err); }
-            if (!user) { return cb(null, false); }
-            if (user.password != password) { return cb(null, false); }
-            return cb(null, user);
-        });
-    }
-));
+// passport.use(new Strategy(
+//     function (username, password, cb) {
+//         auth.users.findByUsername(username, function (err, user) {
+//             if (err) { return cb(err); }
+//             if (!user) { return cb(null, false); }
+//             if (user.password != password) { return cb(null, false); }
+//             return cb(null, user);
+//         });
+//     }
+// ));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// passport.serializeUser(function (user, cb) {
+//     cb(null, user.id);
+// });
 
-*/
+// passport.deserializeUser(function (id, cb) {
+//     auth.users.findById(id, function (err, user) {
+//         if (err) { return cb(err); }
+//         cb(null, user);
+//     });
+// });
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -54,7 +63,7 @@ if (process.env.NODE_ENV === "production") {
 // Connect to our database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/restaurantdb";
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
 app.use(apiRoutes);
