@@ -12,7 +12,7 @@ const Signup = props => (
             </div>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="password" type="text" name="password" onChange={props.handleInputChange}></input>
+                    <input id="password" type="password" name="password" onChange={props.handleInputChange}></input>
                     <label htmlFor="password">Password:</label>
                 </div>
             </div>
@@ -28,7 +28,7 @@ const Signup = props => (
                 Login
                 <i className="material-icons right">send</i>
             </button>
-            {<h5>{props.success}</h5>}
+            {<h5>{props.entry}</h5>}
         </form>
     </Container>
 );

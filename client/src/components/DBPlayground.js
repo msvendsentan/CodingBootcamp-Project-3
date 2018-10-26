@@ -368,6 +368,28 @@ class DBPlayground extends Component {
         }).catch(err => console.log(err));
     };
 
+    handleLoginInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            login: {
+                ...prevState.login,
+                account: {
+                    ...prevState.login.account,
+                    [name]: value
+                }
+            }
+        }));
+    }
+
+    handleLoginSubmit = event => {
+        event.preventDefault();
+        API.authenticate.login(this.state.login.account).then(res => {
+            this.setState({
+                entry: res.data
+            })
+        }).catch(err => console.log(err));
+    };
+
 
     tester = event => {
         event.preventDefault();
@@ -439,9 +461,9 @@ class DBPlayground extends Component {
                 />
                 <Login
                     account={this.state.login.account}
-                    success={this.state.success}
-                    handleFormSubmit={this.handleSignUpSubmit}
-                    handleInputChange={this.handleSignupInput}
+                    entry={this.state.entry}
+                    handleFormSubmit={this.handleLoginSubmit}
+                    handleInputChange={this.handleLoginInput}
                 />
                 <button onClick={this.tester}>Console.log state</button>
             </div>
