@@ -37,4 +37,10 @@ router.route("/queries")
 router.route("/queries/restaurant")
     .post(controllers.query.getAllByRestaurant)
 
+router.route("/signup")
+    .post(controllers.auth.create)
+
+router.route("/login")
+    .post(controllers.auth.login)
+
 module.exports = router;
