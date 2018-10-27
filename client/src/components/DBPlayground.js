@@ -14,8 +14,18 @@ import ServerStatus from "./playgroundcomps/ServerStatus"
 import Signup from "./playgroundcomps/Signup"
 import Login from "./playgroundcomps/Login"
 import API from "../utils/API";
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:8000');
 
 class DBPlayground extends Component {
+    constructor(props) {
+        super(props);
+        this.sendSocketIO = this.sendSocketIO.bind(this);
+    }
+
+    sendSocketIO = (x) => {
+        socket.emit('example_message', x);
+    };
 
     state = {
         restaurant: {
@@ -91,7 +101,8 @@ class DBPlayground extends Component {
                         ...prevState.restaurant,
                         list: res.data
                     }
-                }));
+                }))
+                this.sendSocketIO(res);
             })
             .catch(err => console.log(err));
     };
@@ -466,6 +477,7 @@ class DBPlayground extends Component {
                     handleInputChange={this.handleLoginInput}
                 />
                 <button onClick={this.tester}>Console.log state</button>
+                <button onClick={this.sendSocketIO}>Send Socket.io</button>
             </div>
         )
     }
