@@ -12,7 +12,7 @@ const MenuAdd = props => (
             </div>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="description" type="text" name="description" onChange={props.handleInputChange}></input>
+                    <input id="menuAddDescription" type="text" name="description" onChange={props.handleInputChange}></input>
                     <label htmlFor="description">Description</label>
                 </div>
             </div>
@@ -30,7 +30,7 @@ const MenuAdd = props => (
             </div>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="imageSrc" type="text" name="imageSrc" onChange={props.handleInputChange}></input>
+                    <input id="menuAddImageSrc" type="text" name="imageSrc" onChange={props.handleInputChange}></input>
                     <label htmlFor="imageSrc">Image Source</label>
                 </div>
             </div>

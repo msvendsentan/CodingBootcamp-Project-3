@@ -6,7 +6,7 @@ const Signup = props => (
         <form>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="user" type="text" name="user" onChange={props.handleInputChange}></input>
+                    <input id="user" type="text" name="username" onChange={props.handleInputChange}></input>
                     <label htmlFor="user">Username:</label>
                 </div>
             </div>
@@ -24,7 +24,7 @@ const Signup = props => (
             </div>
             <button
                 className={
-                    props.account.user &&
+                    props.account.username &&
                         props.account.password &&
                         props.account.email ?
                         "btn waves-effect waves-light" : (
