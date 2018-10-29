@@ -1,33 +1,18 @@
-const db = require("../models");
+const Auth = require("../models/Auth");
 
 module.exports = {
     create: function (req, res) {
-        db.Auth.findOne({ user: req.body.user })
+        Auth.findOne({ username: req.body.username })
             .then((account) => {
                 if (account) {
                     res.send('Username is taken');
                 } else {
-                    db.Auth.create(req.body)
+                    Auth.create(req.body)
                         .then(() => {
                             res.send('Account created');
                         }).catch((err) => {
                             console.log(err);
                         })
-                }
-            }).catch((err) => {
-                console.log(err);
-            })
-    },
-    login: function (req, res) {
-        db.Auth.findOne({
-            user: req.body.user,
-            password: req.body.password
-        })
-            .then((account) => {
-                if (account) {
-                    res.send('Login successful, Welcome!')
-                } else {
-                    res.send('Username and/or password incorrect')
                 }
             }).catch((err) => {
                 console.log(err);

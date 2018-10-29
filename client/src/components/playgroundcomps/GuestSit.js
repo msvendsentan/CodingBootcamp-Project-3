@@ -6,7 +6,7 @@ const GuestSit = props => (
         <form>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="name" type="text" name="name" onChange={props.handleInputChange}></input>
+                    <input id="guestSitName" type="text" name="name" onChange={props.handleInputChange}></input>
                     <label htmlFor="name">First Name</label>
                 </div>
             </div>

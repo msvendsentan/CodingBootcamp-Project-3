@@ -20,6 +20,7 @@ const socket = openSocket('http://localhost:8000');
 class DBPlayground extends Component {
     constructor(props) {
         super(props);
+
         this.sendSocketIO = this.sendSocketIO.bind(this);
     }
 
@@ -76,15 +77,17 @@ class DBPlayground extends Component {
         },
         signup: {
             account: {
-                user: "",
+                username: "",
                 password: "",
                 email: ""
             }
         },
         login: {
             account: {
-                user: "",
-                password: ""
+                username: "",
+                password: "",
+                loggedIn: false,
+                redirectTo: null
             }
         }
     };
@@ -102,7 +105,7 @@ class DBPlayground extends Component {
                         list: res.data
                     }
                 }))
-                this.sendSocketIO(res);
+                // this.sendSocketIO(res);
             })
             .catch(err => console.log(err));
     };
@@ -372,11 +375,13 @@ class DBPlayground extends Component {
 
     handleSignUpSubmit = event => {
         event.preventDefault();
-        API.authenticate.create(this.state.signup.account).then(res => {
-            this.setState({
-                success: res.data
-            })
-        }).catch(err => console.log(err));
+        API.authenticate.create(this.state.signup.account)
+            .then(res => {
+                this.setState({
+                    redirectTo: `/login`,
+                    success: res.data
+                })
+            }).catch(err => console.log(err));
     };
 
     handleLoginInput = event => {
@@ -394,11 +399,17 @@ class DBPlayground extends Component {
 
     handleLoginSubmit = event => {
         event.preventDefault();
-        API.authenticate.login(this.state.login.account).then(res => {
-            this.setState({
-                entry: res.data
-            })
-        }).catch(err => console.log(err));
+        API.authenticate.login(this.state.login.account)
+            .then(res => {
+                // console.log('login response: ')
+                // console.log(res.data.username)
+                // if (res.status === 200) {
+                this.setState({
+                    loggedIn: true,
+                    username: res.data.username,
+                    redirectTo: '/login'
+                })
+            }).catch(err => console.log(err));
     };
 
 
@@ -472,7 +483,7 @@ class DBPlayground extends Component {
                 />
                 <Login
                     account={this.state.login.account}
-                    entry={this.state.entry}
+                    username={this.state.username}
                     handleFormSubmit={this.handleLoginSubmit}
                     handleInputChange={this.handleLoginInput}
                 />
