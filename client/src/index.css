@@ -1,5 +1,6 @@
 body {
+    background-image: url("./images/darkwoodBG.png");
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
 }

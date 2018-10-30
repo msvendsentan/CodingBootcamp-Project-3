@@ -13,6 +13,17 @@ const style = {
 
 const ServerStatus = props => (
     <Container title="Server View - Requests">
+        <button 
+                className={
+                    props.selected.name ? 
+                    "btn waves-effect waves-light" : 
+                    "btn waves-effect waves-light disabled"
+                } 
+                type="submit" 
+                onClick={props.handleFormSubmit}
+            >Refresh
+                <i className="material-icons right">refresh</i>
+        </button>
         <ul className="collapsible">
             {props.queries.map( query => 
                 <li key={query.query._id}>
