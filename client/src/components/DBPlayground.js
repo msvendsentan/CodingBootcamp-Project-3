@@ -339,6 +339,11 @@ class DBPlayground extends Component {
         }));
     };
 
+    handleServerRefresh = event => {
+        event.preventDefault();
+        this.loadQueries(this.state.restaurant.selected);
+    }
+
     handleGuestStand = event => {
         event.preventDefault();
         API.guest.stand({
@@ -472,8 +477,10 @@ class DBPlayground extends Component {
                     handleFormSubmit={this.handleGuestStand}
                 />
                 <ServerStatus
+                    selected={this.state.restaurant.selected}
                     queries={this.state.queries.list}
                     delete={this.queryDelete}
+                    handleFormSubmit={this.handleServerRefresh}
                 />
                 <Signup
                     account={this.state.signup.account}

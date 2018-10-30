@@ -5,7 +5,11 @@ const GuestPay = props => (
     <Container title={props.guest.name ? `Hi ${props.guest.name}, pay & leave?` : "Sit down first!"}>
         <div>You'd see your bill here, as soon as you placed an order</div>
         <button 
-            className="btn waves-effect waves-light" 
+            className={
+                props.guest.id ? 
+                "btn waves-effect waves-light" : 
+                "btn waves-effect waves-light disabled"
+            }  
             type="submit" 
             data-id={props.guest.id}
             onClick={props.handleFormSubmit}
