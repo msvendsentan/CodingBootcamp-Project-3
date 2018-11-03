@@ -35,7 +35,7 @@ const Signup = props => (
                 Sign-up
                 <i className="material-icons right">send</i>
             </button>
-                <h5>{props.success}</h5>
+            <h5>{props.success}</h5>
         </form>
     </Container>
 );

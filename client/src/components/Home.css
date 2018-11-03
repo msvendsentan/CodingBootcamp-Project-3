@@ -1,0 +1,60 @@
+body {
+    background-color: rgba(0,0,0,0.3);
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+.container {
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    min-width: 250px;
+    max-width: 500px;
+}
+
+form {
+    text-align: center;
+    height: 400px;
+}
+
+.formBox {
+    border-radius: 10px;
+    background-color: rgba(70,70,70,0.35);
+    position: relative;
+}
+
+.form-header {
+    padding: 5px;
+}
+
+.form-content {
+    padding: 20px;
+}
+
+.tabs {
+    background: none;
+}
+
+.tabs .tab a {
+    color: white;
+    background: none;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: white;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background: none;
+    color: white;
+}
+
+.tabs .indicator {
+    background-color: white;
+}
+
+li {
+    display: inline;
+}
