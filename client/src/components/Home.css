@@ -17,6 +17,7 @@ main {
 form {
     text-align: center;
     height: 400px;
+    padding: 15px;
 }
 
 .formBox {
@@ -58,3 +59,4 @@ form {
 li {
     display: inline;
 }
+
