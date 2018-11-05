@@ -57,6 +57,7 @@ const Customer = () => (
       <div class="input-field col s12">
       <div className="inputField">
         <input type="text" id="autocomplete-input" class="autocomplete"></input>
+        
         </div>
       </div>
       <div class="col s12 m12 l12">
