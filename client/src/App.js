@@ -6,11 +6,11 @@ import './App.css';
 import {
     Route,
     Switch,
-    Link
 } from 'react-router-dom';
 
 import Home from './components/Home';
 import Restaurant from './components/Restaurant';
+import Customer from './components/Customer';
 
 class App extends Component {
     constructor() {
@@ -65,7 +65,8 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exactc path="/Restaurant" component={Restaurant} />
+                        <Route exact path="/Restaurant" component={Restaurant} />
+                        <Route exact path="/Customer" component={Customer} />
                     </Switch>
                 </div>
             </div>

@@ -31,19 +31,6 @@ main {
     max-height: 30px;
 }
 
-.tableDiv, .alertDiv {
-    padding: 10px;
-    border: 1px solid white;
-}
-
-.tableDiv {
-    text-align: left;
-}
-
-.alertDiv {
-    text-align: center;
-}
-
 .card-title {
     background-color: black;
     padding: 5px;
