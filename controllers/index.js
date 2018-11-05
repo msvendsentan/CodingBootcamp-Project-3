@@ -4,5 +4,6 @@ module.exports = {
     menu: require("./menu"),
     guest: require("./guest"),
     query: require("./query"),
-    restaurant: require("./restaurant")
+    restaurant: require("./restaurant"),
+    customer: require(".customer")
 }

@@ -11,6 +11,7 @@ import {
 import Home from './components/Home';
 import Restaurant from './components/Restaurant';
 import Customer from './components/Customer';
+import Messages from './components/Messages';
 
 class App extends Component {
     constructor() {
@@ -67,6 +68,7 @@ class App extends Component {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/Restaurant" component={Restaurant} />
                         <Route exact path="/Customer" component={Customer} />
+                        <Route exact path="/Messages" component={Messages} />
                     </Switch>
                 </div>
             </div>

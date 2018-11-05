@@ -15,19 +15,8 @@ body {
     max-height: 30px;
 }
 
-
-
 .customerBox {
     border-radius: 10px;
     background-color: rgba(70,70,70,0.35);
     position: relative;
 }
-
-#autocomplete-input.autocomplete {
-    color: white;
-}
-
-.inputField {
-    color: white;
-}
-
