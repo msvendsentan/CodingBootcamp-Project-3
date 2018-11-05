@@ -1,0 +1,47 @@
+body {
+    border-radius: 15px;
+    background: none;
+}
+
+header {
+    height: auto;
+    padding: 20px 40px;
+    margin-bottom: 10px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.top {
+    text-align: left;
+    padding: 10px;
+}
+
+main {
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border-radius: 15px;
+}
+
+.Logo {
+    max-height: 50px;
+}
+
+.subLogo {
+    max-height: 30px;
+}
+
+.card-title {
+    background-color: black;
+    padding: 5px;
+    text-align: center;
+    margin: 0px;
+}
+
+.card-content p {
+    padding: 10px;
+}
+
+.card .card-content {
+    padding: 3px;
+}

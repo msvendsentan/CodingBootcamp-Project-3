@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "./basiccomps/Container";
 
-const Signup = props => (
+const Login = props => (
     <Container title="Login">
         <form>
             <div className="row">
@@ -33,4 +33,4 @@ const Signup = props => (
     </Container>
 );
 
-export default Signup;
+export default Login;

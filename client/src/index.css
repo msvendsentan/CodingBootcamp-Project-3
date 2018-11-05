@@ -1,6 +1,16 @@
-body {
+html {
     background-image: url("./images/darkwoodBG.png");
-    margin: 0;
+    background-repeat: repeat repeat;
+}
+
+body {
+    height: auto;
+    margin: 30px;
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.row, .col {
+    padding: 0px;
+    margin: 0px;
 }
