@@ -6,7 +6,9 @@ import './App.css';
 import {
     Route,
     Switch,
+    Redirect
 } from 'react-router-dom';
+import PrivateRoute from './components/playgroundcomps/PrivateRoute';
 
 import Home from './components/Home';
 import Restaurant from './components/Restaurant';
@@ -40,7 +42,6 @@ class App extends Component {
             console.log(response.data)
             if (response.data.user) {
                 console.log('Get User: There is a user saved in the server session: ')
-
                 this.setState({
                     loggedIn: true,
                     username: response.data.user.username
@@ -56,17 +57,18 @@ class App extends Component {
     }
 
     render() {
+        // const { from } = this.props.location.state || { from: { pathname: '/' } }
+
+        // if (this.state.loggedIn === true) {
+        //   return <Redirect to={ from } />
+        // }
+
         return (
             <div>
-
-                {/* {this.state.loggedIn && */}
-                {/* <p className="white-text">Join the party, {this.state.username}!</p> */}
-                {/* } */}
-
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/Restaurant" component={Restaurant} />
+                        <PrivateRoute exact path="/Restaurant" component={Restaurant} />
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
                     </Switch>

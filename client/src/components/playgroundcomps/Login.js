@@ -2,7 +2,7 @@ import React from "react";
 import Container from "./basiccomps/Container";
 
 const Login = props => (
-    <Container title="Login">
+    <Container>
         <form>
             <div className="row">
                 <div className="input-field col s12">
@@ -28,7 +28,6 @@ const Login = props => (
                 Login
                 <i className="material-icons right">send</i>
             </button>
-            {<h5>Hello, {props.username}</h5>}
         </form>
     </Container>
 );

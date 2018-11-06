@@ -16,7 +16,7 @@ main {
 
 form {
     text-align: center;
-    height: 400px;
+    height: auto;
     padding: 15px;
 }
 
