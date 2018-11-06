@@ -27,7 +27,12 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.getUser()
+        this.getUser();
+        this.hello();
+    }
+
+    hello = () => {
+        console.log("hello");
     }
 
     updateUser(userObject) {
