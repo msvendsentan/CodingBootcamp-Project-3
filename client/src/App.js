@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PrivateRoute from "./components/playgroundcomps/PrivateRoute";
 
 import './App.css';
 
 import {
     Route,
-    Switch,
+    Switch
 } from 'react-router-dom';
 
 import Home from './components/Home';
@@ -45,7 +46,6 @@ class App extends Component {
             console.log(response.data)
             if (response.data.user) {
                 console.log('Get User: There is a user saved in the server session: ')
-
                 this.setState({
                     loggedIn: true,
                     username: response.data.user.username
@@ -63,15 +63,10 @@ class App extends Component {
     render() {
         return (
             <div>
-
-                {/* {this.state.loggedIn && */}
-                {/* <p className="white-text">Join the party, {this.state.username}!</p> */}
-                {/* } */}
-
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/Restaurant" component={Restaurant} />
+                        <PrivateRoute path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.loggedIn} />}/>
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
                     </Switch>
