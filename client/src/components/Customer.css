@@ -15,8 +15,6 @@ body {
     max-height: 30px;
 }
 
-
-
 .customerBox {
     border-radius: 10px;
     background-color: rgba(70,70,70,0.35);
@@ -30,4 +28,5 @@ body {
 .inputField {
     color: white;
 }
+
 
