@@ -18,12 +18,15 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            loggedIn: false,
-            username: null
+            login: {
+                account: {
+                    loggedIn: false,
+                    username: null
+                }
+            }
         }
 
         this.getUser = this.getUser.bind(this)
-        this.componentDidMount = this.componentDidMount.bind(this)
         this.updateUser = this.updateUser.bind(this)
     }
 
@@ -47,14 +50,22 @@ class App extends Component {
             if (response.data.user) {
                 console.log('Get User: There is a user saved in the server session: ')
                 this.setState({
-                    loggedIn: true,
-                    username: response.data.user.username
+                    login: {
+                        account: {
+                            loggedIn: true,
+                            username: response.data.user.username
+                        }
+                    }
                 })
             } else {
                 console.log('Get user: no user');
                 this.setState({
-                    loggedIn: false,
-                    username: null
+                    login: {
+                        account: {
+                            loggedIn: false,
+                            username: null
+                        }
+                    }
                 })
             }
         })
@@ -66,7 +77,7 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <PrivateRoute path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.loggedIn} />}/>
+                        <Route exact path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.login.account} />} />
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
                     </Switch>

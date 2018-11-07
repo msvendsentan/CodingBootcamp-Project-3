@@ -6,6 +6,7 @@ import Customer from "./supportcomps/Customer"
 import Login from "./playgroundcomps/Login"
 import API from "../utils/API";
 import Logo from '../images/communicateLogo.png';
+import PrivateRoute from '../components/playgroundcomps/PrivateRoute';
 
 import './Home.css';
 import Restaurant from './Restaurant';
@@ -192,18 +193,23 @@ class Home extends Component {
     event.preventDefault();
     API.authenticate.login(this.state.login.account)
       .then(res => {
-        this.setState({
+        this.setState(prevState => ({
           login: {
             account: {
-              loggedIn: true,
+              ...prevState.login.account,
+              loggedIn: true
             }
           }
-        })
-          console.log(this.state.login.account)
+        }))
+        console.log(this.state.login.account)
       })
       .catch(err => {
         this.setState({
-          incorrect: true
+          login: {
+            account: {
+              incorrect: true
+            }
+          }
         })
         console.log(err)
       });
@@ -216,7 +222,6 @@ class Home extends Component {
 
 
   render() {
-    console.log(this.state.login.account);
     return (
       <main>
         <img className="responsive-img" src={Logo} alt="CommunicAte Logo" />
@@ -271,7 +276,8 @@ class Home extends Component {
                 }
               </div>
               {this.state.login.account.loggedIn ? (
-                <Redirect to="/Restaurant" component={Restaurant} />) : (
+                <Redirect to={{ pathname: '/Restaurant' }} />
+              ) : (
                   <div id="test2">
                     <Login
                       account={this.state.login.account}
