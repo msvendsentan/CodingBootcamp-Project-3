@@ -4,8 +4,9 @@ import Restaurant from "../Restaurant";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-            props.loggedIn === true || props.location.loggedIn === true
-            ? <Route path="/" component={Restaurant} />
+        console.log(props),
+            props.location.loggedIn === true
+            ? <Route path="/Restaurant" component={Restaurant} />
             : <Redirect to={{
                 pathname: '/',
                 state: { from: props.location }

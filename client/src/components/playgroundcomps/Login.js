@@ -6,13 +6,13 @@ const Login = props => (
         <form>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="userlogin" type="text" name="username" onChange={props.handleInputChange}></input>
+                    <input id="userlogin" type="text" name="username" onChange={props.handleInputChange} key={props.account.incorrect || '' }></input>
                     <label htmlFor="user">Username:</label>
                 </div>
             </div>
             <div className="row">
                 <div className="input-field col s12">
-                    <input id="passwordlogin" type="password" name="password" onChange={props.handleInputChange}></input>
+                    <input id="passwordlogin" type="password" name="password" onChange={props.handleInputChange} key={props.account.incorrect || '' }></input>
                     <label htmlFor="password">Password:</label>
                 </div>
             </div>
