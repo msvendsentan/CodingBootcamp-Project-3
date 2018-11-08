@@ -6,10 +6,8 @@ import Customer from "./supportcomps/Customer"
 import Login from "./playgroundcomps/Login"
 import API from "../utils/API";
 import Logo from '../images/communicateLogo.png';
-import PrivateRoute from '../components/playgroundcomps/PrivateRoute';
 
 import './Home.css';
-import Restaurant from './Restaurant';
 
 class Home extends Component {
 
@@ -196,7 +194,6 @@ class Home extends Component {
         this.setState(prevState => ({
           login: {
             account: {
-              ...prevState.login.account,
               loggedIn: true
             }
           }
@@ -222,6 +219,13 @@ class Home extends Component {
 
 
   render() {
+    if (this.state.login.account.loggedIn === true) {
+      return <Redirect to={{
+        pathname: '/Restaurant',
+        loggedIn: true
+      }} />
+    }
+
     return (
       <main>
         <img className="responsive-img" src={Logo} alt="CommunicAte Logo" />
@@ -275,20 +279,16 @@ class Home extends Component {
                   )
                 }
               </div>
-              {this.state.login.account.loggedIn ? (
-                <Redirect to={{ pathname: '/Restaurant' }} />
-              ) : (
-                  <div id="test2">
-                    <Login
-                      account={this.state.login.account}
-                      handleFormSubmit={this.handleLoginSubmit}
-                      handleInputChange={this.handleLoginInput}
-                    />
-                    <div>
-                      {this.state.login.account.incorrect ? <h5>Username and/or Password is incorrect</h5> : (<p></p>)}
-                    </div>
-                  </div>
-                )}
+              <div id="test2">
+                <Login
+                  account={this.state.login.account}
+                  handleFormSubmit={this.handleLoginSubmit}
+                  handleInputChange={this.handleLoginInput}
+                />
+                <div>
+                  {this.state.login.account.incorrect ? <h5>Username and/or Password is incorrect</h5> : (<p></p>)}
+                </div>
+              </div>
             </div>
           )
         }

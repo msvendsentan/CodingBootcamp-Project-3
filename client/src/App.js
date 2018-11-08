@@ -77,7 +77,7 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.login.account} />} />
+                        <PrivateRoute exact path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.login.account} />} />
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
                     </Switch>
