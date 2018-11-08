@@ -209,8 +209,6 @@ class Restaurant extends Component {
                                 </div>
                             )                       
                         }
-                        
-                        <button onClick={this.tester}>Console.log state</button>
                     </main>
                 </div>
         )

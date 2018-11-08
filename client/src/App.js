@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Restaurant from './components/Restaurant';
 import Customer from './components/Customer';
 import Messages from './components/Messages';
+import DBPlayground from "./components/DBPlayground";
 
 class App extends Component {
     constructor() {
@@ -80,6 +81,7 @@ class App extends Component {
                         <PrivateRoute exact path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.login.account} />} />
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
+                        <Route exact path="/DBPlayground" component={DBPlayground} />
                     </Switch>
                 </div>
             </div>
