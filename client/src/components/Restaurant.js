@@ -20,23 +20,7 @@ class Restaurant extends Component {
         },
         queries: {
             list: []
-        },
-        /* Alpha--not sure if you need these
-        signup: {
-            account: {
-                username: "",
-                password: "",
-                email: ""
-            }
-        },
-        login: {
-            account: {
-                username: "",
-                password: "",
-                loggedIn: false,
-                redirectTo: null
-            }
-        } */
+        }
     }
 
     componentDidMount() {
@@ -52,7 +36,6 @@ class Restaurant extends Component {
                         list: res.data
                     }
                 }));
-                // this.sendSocketIO(res);
             })
             .catch(err => console.log(err));
     };
@@ -139,6 +122,8 @@ class Restaurant extends Component {
 
 
     render() {
+        console.log(this.props)
+        
         return (
             <div>
                 <header>

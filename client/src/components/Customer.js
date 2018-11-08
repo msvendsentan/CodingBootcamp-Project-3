@@ -10,20 +10,29 @@ const Customer = () => (
     <div className="container customerBox">
       <div className="row">
         <div className="col s4 m4 l4">
-          <div className="reqButton">
+          <div className="hide-on-small-and-down">
             <a className="waves-effect blue darken-4 btn-large">WATER</a>
           </div>
-        </div>
-
-        <div className="col s4 m4 l4">
-          <div className="reqButton">
-            <a className="waves-effect blue darken-4 btn-large">REFILLS</a>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect blue darken-4 btn-small">WATER</a>
           </div>
         </div>
 
         <div className="col s4 m4 l4">
-          <div className="reqButton">
+          <div className="hide-on-small-and-down">
+            <a className="waves-effect blue darken-4 btn-large">REFILL</a>
+          </div>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect blue darken-4 btn-small">REFILL</a>
+          </div>
+        </div>
+
+        <div className="col s4 m4 l4">
+          <div className="hide-on-small-and-down">
             <a className="waves-effect blue darken-4 btn-large">SERVER</a>
+          </div>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect blue darken-4 btn-small">SERVER</a>
           </div>
         </div>
 
@@ -34,18 +43,27 @@ const Customer = () => (
         </div>
 
         <div className="col s4 m4 l4">
-          <div className="billButton">
+          <div className="hide-on-small-and-down">
             <a className="waves-effect pink darken-4 btn-large">CREDIT</a>
           </div>
-        </div>
-        <div className="col s4 m4 l4">
-          <div className="billButton">
-            <a className="waves-effect pink darken-4 btn-large">DEBIT</a>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect pink darken-4 btn-small">CREDIT</a>
           </div>
         </div>
         <div className="col s4 m4 l4">
-          <div className="billButton">
+          <div className="hide-on-small-and-down">
+            <a className="waves-effect pink darken-4 btn-large">DEBIT</a>
+          </div>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect pink darken-4 btn-small">DEBIT</a>
+          </div>
+        </div>
+        <div className="col s4 m4 l4">
+          <div className="hide-on-small-and-down">
             <a className="waves-effect pink darken-4 btn-large">CASH</a>
+          </div>
+          <div className="hide-on-med-and-up">
+            <a className="waves-effect pink darken-4 btn-small">CASH</a>
           </div>
         </div>
       </div>

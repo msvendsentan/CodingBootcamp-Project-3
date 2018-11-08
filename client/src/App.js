@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PrivateRoute from "./components/playgroundcomps/PrivateRoute";
 
 import './App.css';
 
 import {
     Route,
-    Switch,
+    Switch
 } from 'react-router-dom';
 
 import Home from './components/Home';
@@ -17,12 +18,15 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            loggedIn: false,
-            username: null
+            login: {
+                account: {
+                    loggedIn: false,
+                    username: null
+                }
+            }
         }
 
         this.getUser = this.getUser.bind(this)
-        this.componentDidMount = this.componentDidMount.bind(this)
         this.updateUser = this.updateUser.bind(this)
     }
 
@@ -45,16 +49,23 @@ class App extends Component {
             console.log(response.data)
             if (response.data.user) {
                 console.log('Get User: There is a user saved in the server session: ')
-
                 this.setState({
-                    loggedIn: true,
-                    username: response.data.user.username
+                    login: {
+                        account: {
+                            loggedIn: true,
+                            username: response.data.user.username
+                        }
+                    }
                 })
             } else {
                 console.log('Get user: no user');
                 this.setState({
-                    loggedIn: false,
-                    username: null
+                    login: {
+                        account: {
+                            loggedIn: false,
+                            username: null
+                        }
+                    }
                 })
             }
         })
@@ -63,15 +74,10 @@ class App extends Component {
     render() {
         return (
             <div>
-
-                {/* {this.state.loggedIn && */}
-                {/* <p className="white-text">Join the party, {this.state.username}!</p> */}
-                {/* } */}
-
                 <div className="App">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/Restaurant" component={Restaurant} />
+                        <PrivateRoute exact path='/Restaurant' render={(props) => <Restaurant {...props} loggedIn={this.state.login.account} />} />
                         <Route exact path="/Customer" component={Customer} />
                         <Route exact path="/Messages" component={Messages} />
                     </Switch>
