@@ -251,7 +251,6 @@ class Home extends Component {
                 </ul>
               </div>
 
-              {/* The "form" css height is set to 450px in "Home.css". It's just temp setting, to see how things look. We'll set this back to "auto" when filled in with an actual form again. */}
               <div id="test1">
                 {this.state.restaurant.selected.name ?
                   (

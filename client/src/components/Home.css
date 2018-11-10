@@ -4,20 +4,22 @@ body {
 
 main {
     text-align: center;
-    padding: 20px;
+    padding: 30px;
 }
 .container {
     color: white;
     margin-top: 50px;
     margin-bottom: 50px;
-    min-width: 250px;
-    max-width: 500px;
+}
+
+#test1, #test2 {
+    padding: 20px;
 }
 
 form {
     text-align: center;
-    height: 400px;
-    padding: 15px;
+    height: auto;
+    color: white;
 }
 
 .formBox {
@@ -32,6 +34,10 @@ form {
 
 .form-content {
     padding: 20px;
+}
+
+#userlogin {
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .tabs {
@@ -60,3 +66,19 @@ li {
     display: inline;
 }
 
+li div {
+    padding: 5px;
+}
+
+.browser-default {
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding: 5px;
+    margin: 5px;
+}

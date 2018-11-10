@@ -9,7 +9,7 @@ const style = {
 }
 
 const Container = props => (
-    <div className="container blue-grey lighten-5" style={style.container}>
+    <div className="container" style={style.container}>
         <h4>{props.title}</h4>
         {props.children}
     </div>

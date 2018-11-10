@@ -33,7 +33,6 @@ main {
 
 .tableDiv, .alertDiv {
     padding: 10px;
-    border: 1px solid white;
 }
 
 .tableDiv {
@@ -57,4 +56,14 @@ main {
 
 .card .card-content {
     padding: 3px;
+}
+
+.selectedDiv {
+    border-radius: 15px;
+    text-align: right;
+    padding: 10px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0px;
 }
