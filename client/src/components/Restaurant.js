@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import GetRestaurants from "./supportcomps/GetRestaurants"
-import API from "../utils/API";
+import GetRestaurants from './supportcomps/GetRestaurants';
+import API from '../utils/API';
 import Logo from '../images/communicateLogo.png';
 import tableViewLogo from '../images/tableView.png';
 import alertViewLogo from '../images/alertView.png';
+import refillSymbol from '../images/refillSymbol.png';
+import serverSymbol from '../images/serverSymbol.png';
+import waterSymbol from '../images/waterSymbol.png';
 
 
 import './Restaurant.css';
@@ -129,6 +132,9 @@ class Restaurant extends Component {
                 <header>
                     <img className="responsive-img Logo" src={Logo} />
                 </header>
+                <div className="selectedDiv">
+                    <h4>{this.state.restaurant.selected.name}</h4>
+                </div>
                     <main>
                         {this.state.restaurant.selected.name ? 
                             (
@@ -146,7 +152,7 @@ class Restaurant extends Component {
                                             </div>
 
                                             {this.state.tables.list.map( table => 
-                                                <div className="col s12 m3 l3" key={table._id}>
+                                                <div className="col s12 m12 l3" key={table._id}>
                                                     <div className="card tableCard grey darken-3">
                                                         <div className="card-content white-text">
                                                             <span className="card-title">Table {table.number}</span>
@@ -158,6 +164,7 @@ class Restaurant extends Component {
                                                                     data-gid={query.gid} 
                                                                     style={{cursor: "pointer"}}
                                                                 >
+
                                                                 {query.query.query}
                                                                 </p>)
                                                             }

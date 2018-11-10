@@ -11,28 +11,28 @@ const Customer = () => (
       <div className="row">
         <div className="col s4 m4 l4">
           <div className="hide-on-small-and-down">
-            <a className="waves-effect blue darken-4 btn-large">WATER</a>
+            <a className="waves-effect black darken-4 btn-large">WATER</a>
           </div>
           <div className="hide-on-med-and-up">
-            <a className="waves-effect blue darken-4 btn-small">WATER</a>
+            <a className="waves-effect black darken-4 btn-small">WATER</a>
           </div>
         </div>
 
         <div className="col s4 m4 l4">
           <div className="hide-on-small-and-down">
-            <a className="waves-effect blue darken-4 btn-large">REFILL</a>
+            <a className="waves-effect black darken-4 btn-large">REFILL</a>
           </div>
           <div className="hide-on-med-and-up">
-            <a className="waves-effect blue darken-4 btn-small">REFILL</a>
+            <a className="waves-effect black darken-4 btn-small">REFILL</a>
           </div>
         </div>
 
         <div className="col s4 m4 l4">
           <div className="hide-on-small-and-down">
-            <a className="waves-effect blue darken-4 btn-large">SERVER</a>
+            <a className="waves-effect black darken-4 btn-large">SERVER</a>
           </div>
           <div className="hide-on-med-and-up">
-            <a className="waves-effect blue darken-4 btn-small">SERVER</a>
+            <a className="waves-effect black darken-4 btn-small">SERVER</a>
           </div>
         </div>
 
