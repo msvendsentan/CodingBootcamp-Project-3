@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import GetRestaurants from './supportcomps/GetRestaurants';
+import MenuAdd from "./playgroundcomps/MenuAdd"
+import MenuGet from "./playgroundcomps/MenuGet"
+import TableAdd from "./playgroundcomps/TableAdd"
+import TableGet from "./playgroundcomps/TableGet"
 import API from '../utils/API';
 import Logo from '../images/communicateLogo.png';
 import tableViewLogo from '../images/tableView.png';
@@ -18,7 +22,21 @@ class Restaurant extends Component {
             list: [],
             selected: {}
         },
+        menu: {
+            add: {
+                item: "",
+                description: "",
+                type: "",
+                price: 0,
+                imageSrc: ""
+            },
+            list: []
+        },
         tables: {
+            add: {
+                number: "",
+                capacity: 0
+            },
             list: []
         },
         queries: {
@@ -55,13 +73,22 @@ class Restaurant extends Component {
                 }), () => {
                     this.loadTables(res.data._id)
                     this.loadQueries(res.data._id)
-                    /*
-                    this.loadMenu(res.data._id)
-                    this.loadTables(res.data._id)
-                    this.loadQueries(res.data._id)
-                    */
+                    this.loadMenu(res.data._id)                    
                 });
             }).catch(err => console.log(err));
+    };
+
+    loadMenu = (rid) => {
+        API.menu.populate({ rid: rid })
+            .then(res => {
+                this.setState(prevState => ({
+                    menu: {
+                        ...prevState.menu,
+                        list: res.data.menu
+                    }
+                }));
+            })
+            .catch(err => console.log(err));
     };
 
     loadTables = (rid) => {
@@ -104,6 +131,26 @@ class Restaurant extends Component {
             .catch(err => console.log(err));
     };
 
+    menuItemDelete = event => {
+        event.preventDefault();
+        API.menu.delete({
+            id: event.target.getAttribute("data-id"),
+            rid: this.state.restaurant.selected._id
+        })
+            .then(res => this.loadMenu(this.state.restaurant.selected._id))
+            .catch(err => console.log(err));
+    };
+
+    tableDelete = event => {
+        event.preventDefault();
+        API.tables.delete({
+            id: event.target.getAttribute("data-id"),
+            rid: this.state.restaurant.selected._id
+        })
+            .then(res => this.loadTables(this.state.restaurant.selected._id))
+            .catch(err => console.log(err));
+    };
+
     queryDelete = event => {
         event.preventDefault();
         API.queries.delete({
@@ -111,6 +158,48 @@ class Restaurant extends Component {
             gid: event.target.getAttribute("data-gid")
         }).then(res => this.loadQueries(this.state.restaurant.selected._id))
             .catch(err => console.log(err));
+    };
+
+    handleCreateMenu = event => {
+        event.preventDefault();
+        API.menu.add({
+            rid: this.state.restaurant.selected._id,
+            item: this.state.menu.add
+        }).then(res => this.loadMenu(this.state.restaurant.selected._id)).catch(err => console.log(err));
+    };
+
+    handleMenuInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            menu: {
+                ...prevState.menu,
+                add: {
+                    ...prevState.menu.add,
+                    [name]: value
+                }
+            }
+        }));
+    };
+
+    handleCreateTable = event => {
+        event.preventDefault();
+        API.tables.add({
+            rid: this.state.restaurant.selected._id,
+            table: this.state.tables.add
+        }).then(res => this.loadTables(this.state.restaurant.selected._id)).catch(err => console.log(err));
+    };
+
+    handleTableInput = event => {
+        const { name, value } = event.target;
+        this.setState(prevState => ({
+            tables: {
+                ...prevState.tables,
+                add: {
+                    ...prevState.tables.add,
+                    [name]: value
+                }
+            }
+        }));
     };
 
     handleServerRefresh = event => {
@@ -138,70 +227,97 @@ class Restaurant extends Component {
                     <main>
                         {this.state.restaurant.selected.name ? 
                             (
-                                <div className="row">
-                                    <div className="col s12 m9 l9">
-                                        <div className="row tableDiv">
+                                <div>
+                                    <div className="row"> {/* <-- This whole thing someday needs to be made into a component */}
+                                        <div className="col s12 m9 l9">
+                                            <div className="row tableDiv">
 
-                                            <div className="top">
-                                                <img className="responsive-img subLogo" src={tableViewLogo} />
-                                                <div className="right">
-                                                    <button className={"btn waves-effect waves-light"} onClick={this.handleServerRefresh}>
-                                                        <i className="material-icons right">refresh</i>Refresh
-                                                    </button>
+                                                <div className="top">
+                                                    <img className="responsive-img subLogo" src={tableViewLogo} />
+                                                    <div className="right">
+                                                        <button className={"btn waves-effect waves-light"} onClick={this.handleServerRefresh}>
+                                                            <i className="material-icons right">refresh</i>Refresh
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            {this.state.tables.list.map( table => 
-                                                <div className="col s12 m12 l3" key={table._id}>
-                                                    <div className="card tableCard grey darken-3">
-                                                        <div className="card-content white-text">
-                                                            <span className="card-title">Table {table.number}</span>
-                                                            {this.state.queries.list.filter( obj => obj.table === table.number)
-                                                            .map( query => 
+                                                {this.state.tables.list.map( table => 
+                                                    <div className="col s12 m12 l3" key={table._id}>
+                                                        <div className="card tableCard grey darken-3">
+                                                            <div className="card-content white-text">
+                                                                <span className="card-title">Table {table.number}</span>
+                                                                {this.state.queries.list.filter( obj => obj.table === table.number)
+                                                                .map( query => 
+                                                                    <p 
+                                                                        onClick={this.queryDelete}
+                                                                        data-id={query.query._id}
+                                                                        data-gid={query.gid} 
+                                                                        style={{cursor: "pointer"}}
+                                                                    >
+
+                                                                    {query.query.query}
+                                                                    </p>)
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                
+                                                )}
+
+                                            </div>
+                                        </div>
+                                        <div className="col s12 m3 l3">
+                                            <div className="row alertDiv">
+
+                                                <div className="top">
+                                                    <img className="responsive-img subLogo" src={alertViewLogo} />
+                                                </div>
+
+                                                {this.state.queries.list.map( query =>
+                                                    <div className="col s12">
+                                                        <div className="card alertCard red darken-4" key={query.query._id}>
+                                                            <div className="card-content white-text">
+                                                                <span className="card-title">Table {query.table}</span>
                                                                 <p 
                                                                     onClick={this.queryDelete}
                                                                     data-id={query.query._id}
                                                                     data-gid={query.gid} 
                                                                     style={{cursor: "pointer"}}
                                                                 >
-
                                                                 {query.query.query}
-                                                                </p>)
-                                                            }
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>                                                
-                                            )}
+                                                    </div>                                                
+                                                )}
 
-                                        </div>
-                                    </div>
-                                    <div className="col s12 m3 l3">
-                                        <div className="row alertDiv">
-
-                                            <div className="top">
-                                                <img className="responsive-img subLogo" src={alertViewLogo} />
                                             </div>
-
-                                            {this.state.queries.list.map( query =>
-                                                <div className="col s12">
-                                                    <div className="card alertCard red darken-4" key={query.query._id}>
-                                                        <div className="card-content white-text">
-                                                            <span className="card-title">Table {query.table}</span>
-                                                            <p 
-                                                                onClick={this.queryDelete}
-                                                                data-id={query.query._id}
-                                                                data-gid={query.gid} 
-                                                                style={{cursor: "pointer"}}
-                                                            >
-                                                            {query.query.query}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>                                                
-                                            )}
-
                                         </div>
                                     </div>
+                                    <hr></hr>
+                                    <div>
+                                        <h4>Edit Restaurant Settings</h4>
+                                        <MenuAdd
+                                            menu={this.state.menu.add}
+                                            handleFormSubmit={this.handleCreateMenu}
+                                            handleInputChange={this.handleMenuInput}
+                                        />
+                                        <MenuGet
+                                            menu={this.state.menu.list}
+                                            delete={this.menuItemDelete}
+                                        />
+                                        <TableAdd
+                                            table={this.state.tables.add}
+                                            handleFormSubmit={this.handleCreateTable}
+                                            handleInputChange={this.handleTableInput}
+                                        />
+                                        <TableGet
+                                            tables={this.state.tables.list}
+                                            delete={this.tableDelete}
+                                        />
+                                    </div>
+
+
+
                                 </div>
                             )
                             :
