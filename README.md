@@ -1,4 +1,6 @@
-<img align="center" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/aykwong-patch-2/Communicate.PNG">
+<p align="center">
+    <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/aykwong-patch-2/Communicate.PNG">
+</p>
 
 There are a lot of convenience applications that extend beyond the restaurant. However, there hasn't been as much development within the sit-down restaurant experience. Our app looks to modernify and spice up the experience making it more convenient and accessible to everyone.
 
