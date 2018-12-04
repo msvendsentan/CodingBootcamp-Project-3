@@ -1,4 +1,4 @@
-<img align="center>
+<img align="center">
   ![CommunicATE](https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/aykwong-patch-2/Communicate.PNG)
 </img>
 
