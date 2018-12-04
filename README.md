@@ -7,6 +7,7 @@ There are a lot of convenience applications that extend beyond the restaurant. H
 A remote control built for your phone to communicate with the restaurant. From asking for more water, to requesting the bill, and calling for a server, this app aims to modernize and create more efficient practices in the restaurant.
 
 **Contributors**
+<br>
 Made in collaboration by 
 * Robiel Asgedom
 * Jeff Kushner
