@@ -10,12 +10,11 @@ A remote control built for your phone to communicate with the restaurant. From a
 
 **Contributors**
 ======
-<br>
 Made in collaboration by 
-* Robiel Asgedom
-* Jeff Kushner
-* Alpha Kwong
-* Michael Svendsen
+- Robiel Asgedom
+- Jeff Kushner
+- Alpha Kwong
+- Michael Svendsen
 
 **Features**
 ======
