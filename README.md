@@ -21,7 +21,7 @@ Made in collaboration by
 - Customer and Restaurant View
 
 <p align="left">
-    <img width="600" height="400" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-A.PNG">
+    <img width="450" height="300" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-A.PNG">
 </p>
 <p align="left">
     <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-B.PNG">
