@@ -21,10 +21,10 @@ Made in collaboration by
 - Customer and Restaurant View
 
 <p align="left">
-    <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/aykwong-patch-2/Communicate.PNG">
+    <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-A.PNG">
 </p>
 <p align="left">
-    <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/aykwong-patch-2/Communicate.PNG">
+    <img src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-B.PNG">
 </p>
 
 - Secured login for restaurant owners
