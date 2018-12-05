@@ -29,6 +29,7 @@ Made in collaboration by
 </p>
 The main customer view consists of a few buttons that will be sent into the back for it to be logged and displayed on the restaurant view.
 
+
 <p align="left">
     <img width="450" height="300" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Restaurant%20View-B.PNG">
 </p>
