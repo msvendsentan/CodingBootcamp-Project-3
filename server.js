@@ -28,7 +28,7 @@ io.on('connection', function (socket) {
         console.log('User Disconnected');
     });
     socket.on('example_message', function (msg) {
-        // console.log('message: ' + msg);
+        
     });
 });
 
