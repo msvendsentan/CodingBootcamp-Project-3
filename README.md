@@ -19,16 +19,21 @@ Made in collaboration by
 **Features**
 ======
 - Customer and Restaurant View
+- Secured login for restaurant owners
+- Ease of use and functionality
 
-<p align="left">
-    <img width="450" height="300" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-A.PNG">
-</p>
+**Demo**
+======
 <p align="left">
     <img width="450" height="300" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Customer%20View-B.PNG">
 </p>
+The main customer view consists of a few buttons that will be sent into the back for it to be logged and displayed on the restaurant view.
 
-- Secured login for restaurant owners
-- Ease of use and functionality
+<p align="left">
+    <img width="450" height="300" src="https://raw.githubusercontent.com/msvendsentan/CodingBootcamp-Project-3/socket.io/assets/Restaurant%20View-B.PNG">
+</p>
+The restaurant view makes requests into the database updating the view. This allows servers to view the queries coming in from each table as well as alerts letting servers know of incoming inquiries.
+
 
 **Future Directions**
 ======
