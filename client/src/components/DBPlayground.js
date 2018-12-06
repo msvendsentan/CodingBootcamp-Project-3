@@ -14,19 +14,19 @@ import ServerStatus from "./playgroundcomps/ServerStatus"
 import Signup from "./playgroundcomps/Signup"
 import Login from "./playgroundcomps/Login"
 import API from "../utils/API";
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:8000');
+// import openSocket from 'socket.io-client';
+// const socket = openSocket('http://localhost:8000');
 
 class DBPlayground extends Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.sendSocketIO = this.sendSocketIO.bind(this);
-    }
+    //     this.sendSocketIO = this.sendSocketIO.bind(this);
+    // }
 
-    sendSocketIO = (x) => {
-        socket.emit('example_message', x);
-    };
+    // sendSocketIO = (x) => {
+    //     socket.emit('example_message', x);
+    // };
 
     state = {
         restaurant: {
